@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_account_asset_stock_move_form">
+            <field name="name">view.account.asset.stock.move.form</field>
+            <field name="model">account.asset.stock.move</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="ex. Inventaire Salle 22"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="asset_id"/>
+                                <field name="type"/>
+                                <field name="num_ordre"/>
+                                <field name="asset_uom_qty"/>
+                                <field name="date"/>
+                            </group>
+                            <group>
+                                <field name="inventory_asset_id"/>
+                                <field name="location_id"/>
+                                <field name="location_dest_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_asset_stock_move_tree">
+            <field name="name">view.account.asset.stock.move.tree</field>
+            <field name="model">account.asset.stock.move</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="asset_id"/>
+                    <field name="num_ordre"/>
+                    <field name="asset_uom_qty"/>
+                    <field name="type"/>
+                    <field name="date"/>
+                    <field name="inventory_asset_id"/>
+                    <field name="location_id"/>
+                    <field name="location_dest_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_account_asset_stock_move" model="ir.actions.act_window">
+            <field name="name">Mouvement d'immobilisations</field>
+            <field name="res_model">account.asset.stock.move</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Rapports"
+                  parent="account_asset_comm.menu_action_account_asset_asset_form"
+                  id="account_asset_comm.menu_action_account_asset_report"
+                  sequence="104"/>
+
+        <menuitem name="Mouvement d'immobilisations"
+                  parent="account_asset_comm.menu_action_account_asset_report"
+                  id="account_asset_comm.menu_action_account_asset_stock_move"
+                  action="action_account_asset_stock_move" sequence="100"
+                  groups="account.group_account_manager"/>
+
+    </data>
+</odoo>

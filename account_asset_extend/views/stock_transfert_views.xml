@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_account_asset_transfert_form">
+            <field name="name">view.account.asset.transfert.form</field>
+            <field name="model">account.asset.transfert</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_start" states="draft" string="Démarrer le Transfert" type="object"
+                                class="oe_highlight" groups="stock.group_stock_user"/>
+                        <button name="action_open_inventory_lines" states="confirm" string="Continuer le Transfert"
+                                type="object" class="oe_highlight" groups="stock.group_stock_user"/>
+                        <button name="action_validate" string="Valider le Transfert" type="object"
+                                attrs="{'invisible': [('state', '!=', 'confirm')]}"
+                                groups="stock.group_stock_manager"/>
+                        <button name="action_draft" states="confirm" string="Remettre en brouillon" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                    </header>
+                    <sheet>
+                        <field name="line_ids" invisible="1"/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                            <group>
+                                <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_asset_transfert_tree">
+            <field name="name">view.account.asset.transfert.tree</field>
+            <field name="model">account.asset.transfert</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_account_asset_transfert" model="ir.actions.act_window">
+            <field name="name">Transfert d'immobilisations</field>
+            <field name="res_model">account.asset.transfert</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="stock_asset_transfert_line_tree" model="ir.ui.view">
+            <field name="name">account.asset.transfert.line.tree</field>
+            <field name="model">account.asset.transfert.line</field>
+            <field name="arch" type="xml">
+                <tree default_order="asset_id" editable="top" string="Détails du Transfert">
+                    <field name="asset_id" options="{'no_create': True}" width="1.6"
+                           readonly="0"/>
+                    <field name="num_ordre" width="1.6"
+                           readonly="1"/>
+                    <field name="asset_transfert_id" invisible="1"/>
+                    <field name="location_id"
+                           options="{'no_create': True}"
+                           readonly="0"/>
+                    <field name="location_dest_id"
+                           options="{'no_create': True}"
+                           readonly="0"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <menuitem name="Transfert d'immobilisations"
+                  parent="account_asset_comm.menu_action_account_asset_operations"
+                  id="account_asset_comm.menu_action_account_asset_transfert"
+                  action="action_account_asset_transfert" sequence="104"
+                  groups="account.group_account_manager"/>
+
+    </data>
+</odoo>

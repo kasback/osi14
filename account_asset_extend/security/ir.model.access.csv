@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_succursale,asset.succursale,account_asset_ma.model_asset_succursale,group_asset_ma,1,1,1,1
+access_emplacement,asset.emplacement,account_asset_ma.model_asset_emplacement,group_asset_ma,1,1,1,1
+access_product_sous_famille,product_sous_famille all,account_asset_extend.model_product_sous_famille,group_asset_ma,1,1,1,1
+access_asset_stock,access_asset_stock all,account_asset_extend.model_account_asset_stock,group_asset_ma,1,1,1,1
+access_asset_transfert,access_asset_transfert all,account_asset_extend.model_account_asset_transfert,group_asset_ma,1,1,1,1
+access_asset_transfert_line,access_asset_transfert_line all,account_asset_extend.model_account_asset_transfert_line,group_asset_ma,1,1,1,1
+access_asset_stock_line,access_asset_stock_line all,account_asset_extend.model_account_asset_stock_line,group_asset_ma,1,1,1,1
+access_asset_stock_move,access_asset_stock_move all,account_asset_extend.model_account_asset_stock_move,group_asset_ma,1,1,1,1
+access_asset_account.asset.location,account.asset.location all,account_asset_extend.model_account_asset_location,group_asset_ma,1,1,1,1
+access_asset_account.asset.location.line,account.asset.location.line all,account_asset_extend.model_account_asset_location_line,group_asset_ma,1,1,1,1
+access_stock.barcodes.read.asset.log,stock.barcodes.read.asset.log all,account_asset_extend.model_stock_barcodes_read_asset_log,group_asset_ma,1,1,1,1
+access.wiz.stock.barcodes.read.inventory.asset.log,wiz.stock.barcodes.read.inventory.asset all,account_asset_extend.model_wiz_stock_barcodes_read_inventory_asset,group_asset_ma,1,1,1,1
+access.print.asset.report,print.asset.report all,account_asset_extend.model_print_asset_report,group_asset_ma,1,1,1,1

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="asset_report_paperformat" model="report.paperformat">
+        <field name="name">Fromat d'impression Rapport d'immobilisation</field>
+        <field name="default" eval="True"/>
+        <field name="format">A4</field>
+        <field name="page_height">0</field>
+        <field name="page_width">0</field>
+        <field name="orientation">Portrait</field>
+        <field name="margin_top">5</field>
+        <field name="margin_bottom">3</field>
+        <field name="margin_left">3</field>
+        <field name="margin_right">3</field>
+        <field name="header_line" eval="False"/>
+        <field name="header_spacing">0</field>
+        <field name="dpi">90</field>
+    </record>
+
+    <report
+        id="report_asset_asset"
+        string="Fiche d'immobilisation"
+        model="account.asset.asset"
+        report_type="qweb-pdf"
+        paperformat="account_asset_extend.asset_report_paperformat"
+        name="account_asset_extend.asset_report_template"
+        file="account_asset_extend.asset_report_template"
+        menu="True"
+    />
+
+    <report
+        id="report_asset_location"
+        string="État par emplacement"
+        model="account.asset.asset"
+        report_type="qweb-pdf"
+        paperformat="account_asset_extend.asset_report_paperformat"
+        name="account_asset_extend.asset_location_report_template"
+        file="account_asset_extend.asset_location_report_template"
+        menu="True"
+    />
+
+</odoo>

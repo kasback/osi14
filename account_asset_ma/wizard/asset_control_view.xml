@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_asset_control_tree">
+            <field name="name">Assets Control</field>
+            <field name="model">asset.control</field>
+            <field name="arch" type="xml">
+                <tree string="Asset Control">
+                    <field name="fiscal_year" domain="[('type_id.fiscal_year','=',True)]"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_asset_control_form">
+            <field name="name">Assets Control</field>
+            <field name="model">asset.control</field>
+            <field name="arch" type="xml">
+                <form string="Asset Control">
+                <header>
+                    <button name="asset_control" string="Control" type="object" default_focus="1" class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="fiscal_year" domain="[('type_id.fiscal_year','=',True)]"/>
+                    </group>
+                    <notebook colspan="4">
+                        <page string="Contrôles de comptabilisation Dotation">
+                            <field name="control_accounting_ids">
+                                <tree string="contrôles de comptabilisation" create="false">
+                                    <field name="depreciation_date"/>
+                                    <field name="asset_id"/>
+                                    <field name="amount"/>
+                                    <field name="account_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Contrôles">
+                            <field name="control_ids">
+                            <form string="contrôles">
+                                <group>
+                                    <field name="account_id"/>
+                                </group>
+                                <group>
+                                    <field name="balance_asset"/>
+                                    <field name="balance_account"/>
+                                    <field name="diff_amount"/>
+                                </group>
+                                <group>
+                                    <field name="is_reconciled" invisible = 'True'/>
+                                </group>
+                                <group>
+                                    <field name="unreconciled_ids">
+                                        <form string="Unreconciled Assets">
+                                            <group>
+                                                <field name="account_id"/>
+                                                <field name="move_id"/>
+                                                <field name="journal_id"/>
+                                            </group>
+                                            <group>
+                                                <field name="date"/>
+                                            </group>
+                                            <group>
+                                                <field name="debit"/>
+                                                <field name="credit"/>
+                                            </group>
+                                        </form>
+                                        <tree string="Unreconciled Assets">
+                                            <field name="account_id"/>
+                                            <field name="move_id"/>
+                                            <field name="journal_id"/>
+                                            <field name="date"/>
+                                            <field name="debit"/>
+                                            <field name="credit"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </form>
+                            <tree string="Control Assets" colors="red:is_reconciled==False">
+                                <field name="account_id"/>
+                                <field name="balance_asset"/>
+                                <field name="balance_account"/>
+                                <field name="diff_amount"/>
+                                <field name="is_reconciled" invisible = 'True'/>
+                            </tree>
+                        </field>
+                    </page>
+                    </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="action_asset_controller">
+            <field name="name">Assets Control</field>
+            <field name="res_model">asset.control</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    <menuitem
+        id="menu_asset_control"
+        name="Control Asset"
+        parent="account.menu_finance_entries"
+        action="action_asset_controller"
+        sequence = "70"
+       />
+
+
+    </data>
+</odoo>

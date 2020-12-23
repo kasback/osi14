@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="account_asset_extend_num_ordre" model="ir.sequence">
+            <field name="name">Numéro d'ordre pour immobilisations</field>
+            <field name="code">asset_order_number</field>
+             <field name="prefix"></field>
+            <field name="padding">4</field>
+        </record>
+    </data>
+</odoo>

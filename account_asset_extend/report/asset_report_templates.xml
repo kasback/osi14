@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="asset_report_template">
+        <t t-call="web.html_container">
+
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <style type="text/css">
+                        th, td {
+                        padding: 10px;
+                        border:0;
+                        }
+                    </style>
+                    <div class="page" style="padding:50px;">
+                        <center>
+                            <div style="background-color:#000080;width:500px;padding:20px;margin-bottom:50px;">
+                                <h3 style="color:white;">Fiche immobilisation</h3>
+                            </div>
+
+                            <table class="table table-bordered col-xs-4"
+                                   style="width:500px;padding:50px;border: 2px solid #2f94e8;">
+                                <tr height="60px">
+                                    <td>
+                                        <span>Code inventaire :</span>
+
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.code_inventaire">
+                                            <span t-esc="o.code_inventaire"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>Désignation :</span>
+
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.name">
+                                            <span t-esc="o.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>Compte Comptable :</span>
+
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.category_id">
+                                            <span t-esc="o.category_id.account_asset_id.code[:5]"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>Famille Immobilisation:</span>
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.category_id">
+                                            <span t-esc="o.category_id.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>Niveau :</span>
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.niveau_id">
+                                            <span t-esc="o.niveau_id.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>Salle :</span>
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.num_salle">
+                                            <span t-esc="o.num_salle.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>Affectataire :</span>
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.affectataire">
+                                            <span t-esc="o.affectataire.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>Fournisseur :</span>
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.partner_id">
+                                            <span t-esc="o.partner_id.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>Date facture :</span>
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.invoice_date">
+                                            <span t-esc="o.invoice_date"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>Date réception :</span>
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.date">
+                                            <span t-esc="o.date"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>N° de BC/ Marché/ Contrat/ Convention :</span>
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.num_so">
+                                            <span t-esc="o.num_so"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr height="60px">
+                                    <td>
+                                        <span>Montant d’acquisition HT :</span>
+                                    </td>
+                                    <td style="color:#2f94e8;">
+                                        <t t-if="o.value">
+                                            <span t-esc="o.value"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
+                        </center>
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+
+    <template id="asset_location_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.basic_layout">
+                <style type="text/css">
+                    th, td {
+                    padding: 10px;
+                    border:1px solid #CCC;
+                    }
+                </style>
+
+                    <div class="page" style="padding:50px;border:2px solid #000080">
+                        <center>
+                            <div style="background-color:#000080;width:500px;padding:20px;margin-bottom:50px;">
+                                <h3 style="color:white;">ETAT PAR EMPLACEMENT</h3>
+                            </div>
+                            <h4>Emplacement :
+                                <span style="color:#2f94e8;" t-esc="location"/>
+                            </h4>
+
+                            <table style="border:1px solid #CCC">
+                                <thead>
+                                    <tr>
+                                        <th>Intitulé immobilisations</th>
+                                        <th>Codes inventaire</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="docs" t-as="doc">
+                                        <tr>
+                                            <td>
+                                                <t t-esc="doc.name"/>
+                                            </td>
+                                            <td width="40%">
+                                                <t t-esc="doc.code_inventaire"/>
+                                            </td>
+                                        </tr>
+                                    </t>
+                                </tbody>
+
+                            </table>
+                        </center>
+                    </div>
+
+            </t>
+        </t>
+    </template>
+
+</odoo>

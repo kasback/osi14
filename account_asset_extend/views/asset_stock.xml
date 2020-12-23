@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record model="ir.ui.view" id="view_account_asset_stock_form">
+            <field name="name">view.product.sous.famille.form</field>
+            <field name="model">account.asset.stock</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="action_start" states="draft" string="Démarrer l'inventaire" type="object"
+                                class="oe_highlight" groups="stock.group_stock_user"/>
+                        <button name="action_open_inventory_lines" states="confirm" string="Continuer l'inventaire"
+                                type="object" class="oe_highlight" groups="stock.group_stock_user"/>
+                        <button name="action_validate" string="Valider l'inventaire" type="object"
+                                attrs="{'invisible': [('state', '!=', 'confirm')]}"
+                                groups="stock.group_stock_manager"/>
+                        <button name="action_draft" states="confirm" string="Remettre en brouillon" type="object"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,confirm,done"/>
+                    </header>
+                    <sheet>
+                        <div name="button_box" class="oe_button_box">
+                            <button class="oe_stat_button" name="action_open_asset_moves" type="object" states="done"
+                                    icon="fa-exchange">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_text">Mouvements</span>
+                                </div>
+                            </button>
+                            <button
+                                    name="action_barcode_scan"
+                                    class="oe_stat_button"
+                                    icon="fa-barcode"
+                                    type="object"
+                                    help="List view of lines"
+                                    states="draft,confirm"
+                            >
+                                <div class="o_form_field o_stat_info">
+                                    <span class="o_stat_text">Scan barcodes</span>
+                                </div>
+                            </button>
+                        </div>
+                        <field name="line_ids" invisible="1"/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1>
+                                <field name="name" placeholder="ex. Inventaire Salle 22"
+                                       attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="specific_location" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="location_id"
+                                       attrs="{'invisible': [('specific_location', '!=', True)],
+                                        'required': [('specific_location', '=', True)],
+                                        'readonly': [('state', '!=', 'draft')]}"
+                                       options="{'no_create': True}"
+                                />
+                            </group>
+                            <group>
+                                <field name="partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                                <field name="date" attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_account_asset_stock_tree">
+            <field name="name">view.account.asset.stock.tree</field>
+            <field name="model">account.asset.stock</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="location_id"/>
+                    <field name="date"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="action_account_asset_stock" model="ir.actions.act_window">
+            <field name="name">Ajustement d'immobilisations</field>
+            <field name="res_model">account.asset.stock</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="stock_asset_inventory_line_tree" model="ir.ui.view">
+            <field name="name">account.asset.stock.line.tree</field>
+            <field name="model">account.asset.stock.line</field>
+            <field name="arch" type="xml">
+                <tree default_order="asset_id" editable="top" string="Détails d'inventaire"
+                      decoration-danger="product_qty != theoretical_qty"
+                      decoration-muted="product_qty == theoretical_qty"
+                      decoration-bf="is_editable">
+                    <field name="is_editable" invisible="1"/>
+                    <field name="asset_id" options="{'no_create': True}" width="1.6"
+                           readonly="1"/>
+                    <field name="num_ordre" width="1.6"
+                           readonly="1"/>
+                    <field name="asset_stock_id" invisible="1"/>
+                    <field name="location_id"
+                           options="{'no_create': True}"
+                           readonly="1"/>
+                    <field name="theoretical_qty" width="0.5"
+                           force_save="1" readonly="1" optional="show"/>
+                    <field name="product_qty" attrs="{'readonly': [('state', '!=', 'confirm')]}"
+                           width="0.5"/>
+                    <field name="difference_qty" optional="show" width="0.5"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="stock_asset_inventory_line_tree_no_location" model="ir.ui.view">
+            <field name="name">account.asset.stock.line.tree.no.location</field>
+            <field name="model">account.asset.stock.line</field>
+            <field name="arch" type="xml">
+                <tree default_order="asset_id" editable="top" string="Détails d'inventaire"
+                      decoration-danger="product_qty != theoretical_qty"
+                      decoration-muted="product_qty == theoretical_qty"
+                      decoration-bf="is_editable">
+                    <field name="is_editable" invisible="1"/>
+                    <field name="asset_id" options="{'no_create': True}" width="1.6"
+                           readonly="1"/>
+                    <field name="num_ordre" width="1.6"
+                           readonly="1"/>
+                    <field name="asset_stock_id" invisible="1"/>
+                    <field name="new_location_id"
+                           options="{'no_create': True}"
+                           readonly="0"/>
+                    <field name="theoretical_qty" width="0.5"
+                           force_save="1" readonly="1" optional="show"/>
+                    <field name="product_qty" attrs="{'readonly': [('state', '!=', 'confirm')]}"
+                           width="0.5"/>
+                    <field name="difference_qty" optional="show" width="0.5"/>
+                    <field name="state" invisible="1"/>
+                </tree>
+            </field>
+        </record>
+
+        <menuitem name="Ajustement d'immobilisations"
+                  parent="account_asset_comm.menu_action_account_asset_operations"
+                  id="account_asset_comm.menu_action_account_asset_stock"
+                  action="action_account_asset_stock" sequence="103"
+                  groups="account.group_account_manager"/>
+
+    </data>
+</odoo>

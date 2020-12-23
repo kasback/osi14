@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="view_account_asset_asset_form_inherit_percent">
+            <field name="name">account.asset.asset.form.inherit.percent</field>
+            <field name="model">account.asset.asset</field>
+            <field name="inherit_id" ref="account_asset_comm.view_account_asset_asset_form"/>
+            <field name="arch" type="xml">
+
+                <field name="prorata" position="after">
+                    <field name="by_percent" attrs="{'readonly':[('state', '!=', 'draft')]}"/>
+                </field>
+                <field name="method_number" position="before">
+                    <field name="percent" attrs="{'invisible':[('by_percent','=',False)], 'readonly':[('state', '!=', 'draft')]}"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
