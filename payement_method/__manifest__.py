@@ -3,7 +3,7 @@
 {
     "name": u"Ajout de méthodes de paiements",
     "version": "1.0",
-    "depends": ['account', 'l10n_maroc'],
+    "depends": ['account', 'account_data_ma'],
     "author": "Andema",
     'website': 'http://www.andemaconsulting.com',
     "description": "Methode de paiament",

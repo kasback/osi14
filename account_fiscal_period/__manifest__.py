@@ -8,7 +8,7 @@
     'author': 'Andema',
     'website': 'http://www.andemaconsulting.com',
     'depends': [
-        'account_fiscal_year', 'l10n_maroc'
+        'account_fiscal_year', 'account_data_ma'
     ],
     'data': [
         'security/date_range_security.xml',

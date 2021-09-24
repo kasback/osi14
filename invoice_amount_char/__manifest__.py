@@ -11,6 +11,7 @@
     'website': 'http://www.andemaconsulting.com',
     'images': [],
     'depends': ['account',
+                'invoice_droit_timbre'
                 ],
     'init_xml': [],
     'data': [

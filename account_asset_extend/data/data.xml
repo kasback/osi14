@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <data>
-        <record id="stock_location_locations_virtual_asset" model="account.asset.location">
-            <field name="name">Emplacement Virtuel : Immobilisations</field>
-            <field name="usage">view</field>
-        </record>
-    </data>
-</odoo>
