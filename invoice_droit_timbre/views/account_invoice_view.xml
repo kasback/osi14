@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="account_invoice_form_droit_timbre">
+            <field name="name">account.invoice.form.droit.timbre</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_move_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='amount_total']" position="after">
+                    <field name="droit_timbre"/>
+                    <field name="total_a_payer"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="invoice_tree_net_a_payer" model="ir.ui.view">
+            <field name="name">account.invoice.tree</field>
+            <field name="model">account.move</field>
+            <field name="inherit_id" ref="account.view_invoice_tree"/>
+            <field name="arch" type="xml">
+                    <field name="amount_total_signed" position="after">
+                        <field name="total_a_payer"  sum="Total à payer"/>
+                    </field>
+                     <!--<field name="residual_signed" position="attributes">
+                         <attribute name="invisible">1</attribute>
+                     </field>-->
+            </field>
+        </record>
+
+    </data>
+</odoo>

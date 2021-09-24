@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="account_invoice_mode_reglement" inherit_id="report_bl_facture.report_facture_bl_document">
+            <xpath expr="//p[@t-if='o.payment_term_id']" position="before">
+                <p t-if="o.mode_reglement_ids">
+                     <table class="table table-condensed" name="invoice_line_table">
+                        <thead>
+                            <tr>
+                                <th>Mode de règlement</th>
+                                <th>Référence</th>
+                            </tr>
+                        </thead>
+                        <tbody class="invoice_tbody">
+                            <tr t-foreach="o.mode_reglement_ids" t-as="r">
+                                <td>
+                                    <span t-field="r.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="r.ref_regl"/>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </p>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>

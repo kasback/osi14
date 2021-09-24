@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_mode_eglement,account_invoice_mode_reglement,model_account_invoice_mode_reglement,account.group_account_invoice,1,1,1,1
+

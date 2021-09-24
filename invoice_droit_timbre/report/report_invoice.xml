@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--<template id="invoice_tax_stamp" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@class='col-xs-4 pull-right']/table/tr[last()]" position="after">
+            <tr t-if="o.droit_timbre">
+                <td>
+                    <strong>Droit de timbre<span t-field="o.rate"/>%
+                    </strong>
+                </td>
+                <td class="text-right">
+                    <span t-field="o.droit_timbre"
+                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                </td>
+            </tr>
+            <tr class="border-black">
+                <td>
+                    <strong>Total à payer</strong>
+                </td>
+                <td class="text-right">
+                    <span t-field="o.total_a_payer"
+                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                </td>
+            </tr>
+        </xpath>
+    </template>
+
+    <template id="invoice_tax_stamp" inherit_id="report_bl_facture.report_facture_bl_document">
+        <xpath expr="//div[@class='col-xs-4 pull-right']/table/tr[last()]" position="after">
+            <tr t-if="o.droit_timbre"  style="border-bottom:1px solid #dddddd;">
+                <td>
+                    <span>Droit de timbre <span t-field="o.rate"/>%
+                    </span>
+                </td>
+                <td class="text-right">
+                    <span t-field="o.droit_timbre"
+                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                </td>
+            </tr>
+            <tr class="border-black">
+                <td>
+                    <strong>Total à payer</strong>
+                </td>
+                <td class="text-right">
+                    <span t-field="o.total_a_payer"
+                          t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                </td>
+            </tr>
+        </xpath>
+    </template>-->
+</odoo>
